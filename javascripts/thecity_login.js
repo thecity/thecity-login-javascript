@@ -5,8 +5,8 @@ TheCityLogin = {
   defaults : { 'subdomain' : null,
                'city_login_div_id' : 'thecity_login'},
                
-  _class_vars : {'login_form_url' : 'http://authentication.devthecity.org:3002/sessions/remote_form.json?callback=?',
-                 'login_url' : 'http://authentication.devthecity.org:3002/sessions/remote_login.json'}, 
+  _class_vars : {'login_form_url' : 'http://authentication.devthecity.org/sessions/remote_form.json?callback=?',
+                 'login_url' : 'http://authentication.devthecity.org/sessions/remote_login.json'}, 
   
   start : function(options) {
     if(options !== undefined) { 
