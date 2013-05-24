@@ -1,5 +1,5 @@
 #thecity_login {
-  width: 300px;
+  width: 400px;
   margin: 0px auto 0px auto;
 }
 
@@ -10,4 +10,8 @@
 
 #thecity_login #authcity ul li {
   padding: 5px;
+}
+
+#thecity_login #authcity ul li.city_error {
+  color: #ff0000;
 }

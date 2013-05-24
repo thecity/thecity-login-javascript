@@ -4,10 +4,10 @@
 TheCityLogin = {
   defaults : { 'subdomain' : null,
                'city_login_div_id' : 'thecity_login',
-               'error_url' : document.URL},
+               'display_form_loading_message' : true},
                
-  _class_vars : {'login_form_url' : 'http://authentication.devthecity.org:3002/sessions/remote_form.json?callback=?',
-                 'login_url' : 'http://authentication.devthecity.org:3002/sessions/remote_login.json'}, 
+  _class_vars : {'login_form_url' : 'http://authentication.onthecity.org/sessions/remote_form.json?callback=?',
+                 'login_url' : 'http://authentication.onthecity.org/sessions/remote_login.json?callback=?'}, 
   
   start : function(options) {
     if(options !== undefined) { 
@@ -23,21 +23,22 @@ TheCityLogin = {
       alert('Div ID not specified');
       return;
     }    
-    
+
+    if(this.defaults['display_form_loading_message']) {
+      $('#'+this.defaults['city_login_div_id']).html("Loading login form....");
+    }
+
     var self = this; // Need object scope at this point
-    $.getJSON(this._class_vars['login_form_url'],
-      function(response){        
+    $.getJSON(this._class_vars['login_form_url'], function(response){        
         var form = response['form'];
         form = form.replace(/[\r\n]/g, '');
         form = $.base64.decode(form);
         $('#'+self.defaults['city_login_div_id']).html(form);
         
         self._add_meta_tag_csrf_token();
-        self._add_subdomain_tag();
-        self._add_error_url_tag();
         self._add_login_link_listener();
       }
-    );    
+    )   
   },
 
   _add_meta_tag_csrf_token : function() {
@@ -45,51 +46,38 @@ TheCityLogin = {
     csrf_token.name = "csrf-token";
     csrf_token.content = $('[name="authenticity_token"]').val()
     document.getElementsByTagName('head')[0].appendChild(csrf_token);
-  },
+  },  
 
-  _add_subdomain_tag : function() {
-    var self = this; // Need object scope at this point
-    var subdomain_tag = document.createElement('input');
-    subdomain_tag.setAttribute("type", "hidden");
-    subdomain_tag.setAttribute("name", "tc_subdomain");
-    subdomain_tag.setAttribute("value", self.defaults['subdomain'] );
-    $("#city_login_link").after( subdomain_tag );
-  },    
+  _remove_errors : function() {
+    $(".city_error").remove();
+  },  
 
-  _add_error_url_tag : function() {
+  _add_error : function(msg) {
     var self = this; // Need object scope at this point
-    var error_url_tag = document.createElement('input');
-    error_url_tag.setAttribute("type", "hidden");
-    error_url_tag.setAttribute("name", "error_url");
-    error_url_tag.setAttribute("value", self.defaults['error_url'] );
-    $("#city_login_link").after( error_url_tag );
+    var error_li = document.createElement("li");
+    error_li.setAttribute("class","city_error");
+    error_li.innerHTML = msg;
+    $("#authcity ul ").prepend( error_li );
   },  
 
   _add_login_link_listener : function() {
     var self = this; // Need object scope at this point
     $("#city_login_link").click(function() {
-      $("#city_login_link").parents('form').submit();
+      self._remove_errors();
 
-      // this is not working 100% yet.
-      // var params = {
-      //   'login' : $("#login").val(),
-      //   'password' : $("#password").val(),
-      //   'authenticity_token' : $('[name="authenticity_token"]').val()
-      // }
+      var params = {
+        'login' : $("#login").val(),
+        'password' : $("#password").val(),
+        'authenticity_token' : $('[name="authenticity_token"]').val()
+      };
 
-      // $.post(self._class_vars['login_url'], params, function(response) {
-      //   console.log(response);
-      //   //window.location = response['redirect_to_url'];
-      // }).fail(function(jqXHR, textStatus, errorThrown) { 
-      //   // var errors_messages = $.parseJSON(jqXHR.responseText);
-      //   // alert(errors_messages['errors'][0]);
-      //   console.log("FAIL");
-      //   console.log(jqXHR);
-      //   console.log(textStatus);
-      //   console.log(errorThrown);
-      //   console.log("FAIL");
-      // });
-
+      $.getJSON(self._class_vars['login_url'], params, function(response){   
+        if(response["success"] != undefined) {
+          window.location = "https://" + self.defaults['subdomain'] + ".onthecity.org";
+        } else {
+          self._add_error(response["errors"]);
+        }          
+      });      
     });
   }
   
