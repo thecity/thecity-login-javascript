@@ -17,7 +17,6 @@ Add the JavaScript files specified above to the header section.  You will also n
     ...
     <head>
       <script src="./javascripts/jquery-1.9.1.min.js"></script>
-      <script src="./javascripts/jquery.base64.min.js"></script>
       <script src="./javascripts/thecity_login.js"></script>
 
       $(function() {  
@@ -49,23 +48,28 @@ To change the ID to bind to set it in the start function.
 
 == Config Options
   
-  ##subdomain## (required)  
-  Your church's subdomain for connecting to The City.  For example if you login to The City using "https://livingstones.onthecity.org" your church's subdomain would be "livingstones".
+##subdomain## (required)  
+Your church's subdomain for connecting to The City.  For example if you login to The City using "https://livingstones.onthecity.org" your church's subdomain would be "livingstones".
 
-  ##city_login_div_id##
-  The ID of the DIV to bind to.  The default the ID will be "thecity_login".
+##city_login_div_id##
+The ID of the DIV to bind to.  The default the ID will be "thecity_login".
 
-  ##display_form_loading_message##  
-  This is the message that is displayed if the form is still trying to load on your site.  For the most part users should never see it but
-  just in case of network latency it will be displayed.  The default message is "Loading login form....".
+##display_form_loading_message##  
+This is the message that is displayed if the form is still trying to load on your site.  For the most part users should never see it but
+just in case of network latency it will be displayed.  The default message is "Loading login form....".
 
-  ##show_remember_me##  
-  The Remember Me checkbox will remember the user if they return to any URL on The City - assuming they have not logged out.  
-  The default option is true (show the checkbox).
-  
-  ##use_placeholder_text##
-  The text for "Login" and "Password" are labels shown to the left of the text field by default.  This option will remove those labels 
-  and use the placeholder attribute where the "Login" and "Password" appear as placeholders in the text field.
+##show_remember_me##  
+The Remember Me checkbox will remember the user if they return to any URL on The City - assuming they have not logged out.  
+The default option is true (show the checkbox).
+
+##use_placeholder_text##
+The text for "Login" and "Password" are labels shown to the left of the text field by default.  This option will remove those labels 
+and use the placeholder attribute where the "Login" and "Password" appear as placeholders in the text field.
+
+
+== Styling
+
+thecity_login.css is provide as an example of what to update for styling.
 
 
 == Contributing
