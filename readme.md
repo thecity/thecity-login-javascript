@@ -18,8 +18,9 @@ Add the JavaScript files specified above to the header section.  You will also n
 
     ...
     <head>
-      <script src="./javascripts/jquery-1.9.1.min.js"></script>
-      <script src="./javascripts/thecity_login.js"></script>
+      <link href="/stylesheets/thecity_login.css" media="all" rel="stylesheet" type="text/css" />
+      <script src="/javascripts/jquery-1.9.1.min.js"></script>
+      <script src="/javascripts/thecity_login.js"></script>
 
       $(function() {  
         TheCityLogin.start({'subdomain' : 'livingstones'});
