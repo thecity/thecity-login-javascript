@@ -1,16 +1,16 @@
-= The City Login JavaScript Plugin
+# The City Login JavaScript Plugin #
 
 A JavaScript plugin that allows users to place a login form on their website.
 
 
-# Installation #
+## Installation ##
 
 Add the 2 JavaScript files to your project:
 * jquery-1.9.1.min.js
 * thecity_login.js
 
 
-# Setup #
+## Setup ##
 
 Add the JavaScript files specified above to the header section.  You will also need to call the start function in a jQuery ready function.  One of the default requirements is your church's City subdomain.  In the example below I use "livingstones", which goes to https://livingstones.onthecity.org.
 
@@ -46,7 +46,7 @@ To change the ID to bind to set it in the start function.
     <div id="my_login_form"></div>
     ...
 
-# Config Options #
+## Config Options ##
   
 **subdomain** (required)  
 Your church's subdomain for connecting to The City.  For example if you login to The City using "https://livingstones.onthecity.org" your church's subdomain would be "livingstones".
@@ -67,12 +67,12 @@ The text for "Login" and "Password" are labels shown to the left of the text fie
 and use the placeholder attribute where the "Login" and "Password" appear as placeholders in the text field.
 
 
-# Styling #
+## Styling ##
 
 thecity_login.css is provide as an example of what to update for styling.
 
 
-# Contributing #
+## Contributing ##
 
 If you want to help out fork the project and send me a pull request.  
 
@@ -80,7 +80,7 @@ You can also send me feature requests by creating a ticket
 (https://github.com/thecity/thecity-login-javascript/issues)
 
 
-# References #
+## References ##
 
 Here are the links to the plugins used.  The versions used for this project are included in the *javascripts* directory.
 
@@ -91,7 +91,7 @@ jQuery Base64 plugin
 https://github.com/carlo/jquery-base64
 
 
-# License #
+## License ##
 
 This plugin is released under the MIT license. Please contact weshays
 (http://github.com/weshays) for any questions.
