@@ -9,6 +9,8 @@ Add the 2 JavaScript files to your project:
 * jquery-1.9.1.min.js
 * thecity_login.js
 
+Add the 1 Stylesheet file to your project:
+* thecity_login.css <== Make change to this as you see fit.
 
 ## Setup ##
 
